@@ -1,0 +1,256 @@
+/* LAYOUT */
+
+body {
+  background-color: #222;
+  height: 100vh;
+}
+
+.grid-item {
+  background-color: white;
+  max-height: 100%;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.btn {
+  position: absolute;
+  bottom: 8rem;
+  left: 6rem;
+
+  border: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2.4rem 3.6rem;
+  border-radius: 9px;
+  cursor: pointer;
+  color: purple;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.btn:hover {
+  box-shadow: 0 0 5px 5px purple;
+}
+
+/* GAME TEXT AND SCORES */
+.score-text,
+.lifes-left-text,
+.highscore-text,
+.game-instruction {
+  position: absolute;
+  font-size: 2.4rem;
+  color: #fff;
+}
+
+.score-text,
+.lifes-left-text,
+.highscore-text {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.game-instruction {
+  top: 15rem;
+  left: 5rem;
+
+  font-size: 2rem;
+  color: #fff;
+}
+
+.score-text {
+  position: absolute;
+  top: 5rem;
+  right: 10.5rem;
+}
+
+.lifes-left-text {
+  position: absolute;
+  top: 9rem;
+  right: 11rem;
+}
+
+.highscore-text {
+  position: absolute;
+  bottom: 7rem;
+  right: 5rem;
+}
+
+/* ICONS */
+
+.fa-medal {
+  color: darkgoldenrod;
+}
+
+.fa-heartbeat {
+  color: red;
+}
+
+.fa-trophy {
+  color: gold;
+  /* margin-right: 0.4rem; */
+}
+
+/* HELPER CLASSES */
+
+.hidden {
+  display: none;
+}
+
+.grid-item--active {
+  background-color: purple;
+  cursor: pointer;
+}
+
+.grid-item--active:hover {
+  box-shadow: 0 0 5px 5px white;
+  cursor: pointer;
+}
+
+/* @-moz-document url-prefix() {
+  .game-instruction {
+    font-size: 1.8rem;
+  }
+
+  .score-text,
+  .lifes-left-text,
+  .highscore-text {
+    font-size: 1.8rem;
+  }
+} */
+
+.show-tablet {
+  display: none;
+}
+/* MEDIA QUERIES */
+@media (max-width: 81em) {
+}
+
+@media (max-width: 88em) {
+  .grid {
+    width: 80%;
+    height: 80%;
+  }
+  .hide-tablet {
+    display: none;
+  }
+  .show-tablet {
+    display: inline-block;
+  }
+  .game-instruction {
+    top: 4rem;
+    font-size: 2.4rem;
+  }
+  .score-text {
+    top: 3rem;
+    right: 4rem;
+  }
+
+  .lifes-left-text {
+    top: 3rem;
+    right: 18rem;
+  }
+
+  .highscore-text {
+    bottom: 3rem;
+    font-size: 2.2rem;
+  }
+
+  .start-game {
+    bottom: 2rem;
+    padding: 1.2rem 2.4rem;
+  }
+}
+
+@media (max-width: 64em) {
+  .grid {
+    width: 100%;
+  }
+  .game-instruction {
+    top: 4rem;
+    color: white;
+    font-weight: bold;
+    top: 12rem;
+    left: 5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 9px;
+    padding: 2.4rem;
+    font-size: 1.8rem;
+  }
+  .start-game {
+    bottom: 1rem;
+    padding: 1.2 2rem;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .grid {
+    width: 100%;
+  }
+  .game-instruction {
+    color: white;
+    font-weight: bold;
+    top: 12rem;
+    left: 5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 9px;
+    padding: 2.4rem;
+    font-size: 1.8rem;
+  }
+  .start-game {
+    background-color: rgb(128, 0, 128);
+    color: white;
+    bottom: 2rem;
+    left: 6rem;
+  }
+
+  .start-game:hover {
+    box-shadow: 0 0 5px 5px black;
+  }
+}
+
+@media (max-width: 48em) {
+  .container {
+    padding: 0;
+  }
+  .grid {
+    width: 90%;
+    height: 70%;
+  }
+  .start-game {
+    left: 2rem;
+  }
+  .highscore-text {
+    right: 2rem;
+    font-size: 1.6rem;
+  }
+  .lifes-left-text {
+    right: 20rem;
+    font-size: 1.8rem;
+  }
+  .score-text {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-height: 25em) {
+  .highscore-text {
+    bottom: 1rem;
+    right: 2rem;
+    font-size: 1.6rem;
+  }
+  .lifes-left-text {
+    top: 2rem;
+    left: 10rem;
+    font-size: 1.6rem;
+  }
+  .score-text {
+    font-size: 1.6rem;
+    top: 2rem;
+    right: 10rem;
+  }
+  .start-game {
+    font-size: 1.2rem;
+    bottom: 0rem;
+  }
+}
