@@ -73,7 +73,7 @@ const startIdletimer = () => {
   // Increment Timer
   if (playing) {
     currSeconds++;
-    console.log(`Current seconds: ${currSeconds}`);
+    // console.log(`Current seconds: ${currSeconds}`);
   }
 };
 
@@ -107,7 +107,7 @@ const handleClick = (e) => {
       score++;
       scoreEl.textContent = score;
     } else if (e.target.classList.contains('grid-item--not-active')) {
-      console.log(lifes);
+      // console.log(lifes);
       handleLifeLoss();
     }
   }

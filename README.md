@@ -1,4 +1,4 @@
-# Clicker game!
+# Purple Ballad - Reflex based browser mini-game!
 
 [Live Demo](https://janseulin.github.io/clicker-game/)
 
