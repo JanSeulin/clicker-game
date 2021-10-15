@@ -10,6 +10,7 @@ body {
   max-height: 100%;
   width: 100%;
   margin-bottom: 0;
+  /* transition: all 0.05s; */
 }
 
 .btn {
@@ -75,6 +76,13 @@ body {
   right: 5rem;
 }
 
+.volume-toggle {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  cursor: pointer;
+}
+
 /* ICONS */
 
 .fa-medal {
@@ -89,6 +97,12 @@ body {
   color: gold;
 }
 
+.volume-on,
+.volume-mute {
+  font-size: 3.6em;
+  color: white;
+}
+
 /* HELPER CLASSES */
 
 .hidden {
@@ -98,6 +112,7 @@ body {
 .grid-item--active {
   background-color: purple;
   cursor: pointer;
+  transition: none;
 }
 
 .grid-item--active:hover {
@@ -109,13 +124,10 @@ body {
   display: none;
 }
 
-/* MEDIA QUERIES */
-@media (max-width: 81em) {
-}
-
+/* 1400 px */
 @media (max-width: 88em) {
   .grid {
-    width: 80%;
+    width: 90%;
     height: 80%;
   }
   .hide-tablet {
@@ -125,7 +137,8 @@ body {
     display: inline-block;
   }
   .game-instruction {
-    top: 4rem;
+    top: 3rem;
+    left: 10rem;
     font-size: 2.4rem;
   }
   .score-text {
@@ -149,6 +162,7 @@ body {
   }
 }
 
+/* 1024px */
 @media (max-width: 64em) {
   .grid {
     width: 100%;
@@ -171,6 +185,7 @@ body {
   }
 }
 
+/* 768 px */
 @media (max-width: 48em) {
   .grid {
     width: 100%;
@@ -195,50 +210,95 @@ body {
   .start-game:hover {
     box-shadow: 0 0 5px 5px black;
   }
-}
-
-@media (max-width: 48em) {
-  .container {
-    padding: 0;
-  }
-  .grid {
-    width: 90%;
-    height: 70%;
-  }
-  .start-game {
-    left: 2rem;
-  }
-  .highscore-text {
-    right: 2rem;
-    font-size: 1.6rem;
-  }
   .lifes-left-text {
     right: 20rem;
-    font-size: 1.8rem;
-  }
-  .score-text {
-    font-size: 1.6rem;
   }
 }
 
-@media (max-height: 25em) {
+/* max HEIGHT 600px */
+@media (max-height: 38em) {
   .highscore-text {
     bottom: 1rem;
-    right: 2rem;
+    right: 3rem;
     font-size: 1.6rem;
   }
   .lifes-left-text {
-    top: 2rem;
+    top: 1rem;
     left: 10rem;
     font-size: 1.6rem;
   }
   .score-text {
     font-size: 1.6rem;
-    top: 2rem;
+    top: 1rem;
     right: 10rem;
   }
   .start-game {
     font-size: 1.2rem;
+    padding: 0.8rem 1.6rem;
     bottom: 0rem;
+  }
+  .game-instruction {
+    color: white;
+    font-weight: bold;
+    top: 12rem;
+    left: 5rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 9px;
+    padding: 2.4rem;
+    font-size: 1.8rem;
+  }
+  .hide-tablet {
+    display: none;
+  }
+  .volume-toggle {
+    top: 0.5rem;
+    left: 1rem;
+  }
+  .volume-on,
+  .volume-mute {
+    font-size: 2.4em;
+    color: white;
+  }
+}
+
+/* 512px  */
+@media (max-width: 32em) {
+  .container {
+    padding: 0;
+  }
+  .grid {
+    width: 95%;
+    height: 70%;
+  }
+  .start-game {
+    left: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.8rem;
+  }
+  .highscore-text {
+    right: 1rem;
+    font-size: 1.4rem;
+  }
+  .lifes-left-text {
+    right: 18rem;
+    font-size: 1.8rem;
+  }
+  .score-text {
+    font-size: 1.8rem;
+  }
+
+  .volume-on,
+  .volume-mute {
+    font-size: 2.8em;
+    color: white;
+  }
+}
+
+@media (max-width: 32em) and (max-height: 38em) {
+  .score-text {
+    right: 1rem;
+  }
+  .lifes-left-text {
+    left: 9rem;
   }
 }

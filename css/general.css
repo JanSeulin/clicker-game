@@ -17,6 +17,7 @@ body {
   overflow: hidden;
 
   display: flex;
+  transition: all 0.1s;
 }
 
 /*******************************/

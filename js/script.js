@@ -7,12 +7,15 @@ const gameInstructionEl = document.querySelector('.game-instruction');
 const scoreEl = document.querySelector('.score');
 const lifesEl = document.querySelector('.lifes');
 const highscoreEl = document.querySelector('.highscore');
-
+// Paragraphs
 const scorePEl = document.querySelector('.score-text');
 const lifesPEl = document.querySelector('.lifes-left-text');
 const highscorePEl = document.querySelector('.highscore-text');
-
-// Audio
+// Volume control
+const volumeEl = document.querySelector('.volume-toggle');
+const muteVol = document.querySelector('.volume-mute');
+const turnOnVol = document.querySelector('.volume-on');
+// Audio Files and settings
 const pointAddedSong = new Audio('audio/success-click.wav');
 const wrongClick = new Audio('audio/wrong-click.wav');
 const gameOver = new Audio('audio/game-over.wav');
@@ -24,17 +27,15 @@ wrongClick.preload = 'auto';
 wrongClick.volume = 0.4;
 gameOver.preload = 'auto';
 
-// console.log(gridItems.length);
-
 // Initial game state
 let score, lifes, timer, lastPos, currSeconds;
 let highscore = 0;
-
+let musicOn = true;
 let playing = false;
 
 const init = () => {
   playing = false;
-  score = 0;
+  score = 150;
   lifes = 5;
   currSeconds = 0;
   scoreEl.textContent = 0;
@@ -62,17 +63,33 @@ const init = () => {
 
 init();
 
+// Handle music on/off
+volumeEl.addEventListener('click', () => {
+  muteVol.classList.toggle('hidden');
+  turnOnVol.classList.toggle('hidden');
+  musicOn = !musicOn;
+
+  if (musicOn === false) {
+    gameMusic.pause();
+  } else {
+    if (playing) {
+      gameMusic.play();
+    }
+  }
+  console.log(musicOn);
+});
+
 const resetTimer = () => {
   clearInterval(timer);
   currSeconds = 0;
 
-  timer = setInterval(startIdletimer, 1000);
+  timer = setInterval(startIdletimer, 500);
 };
 
 const startIdletimer = () => {
   // Increment Timer
   if (playing) {
-    currSeconds++;
+    currSeconds += 0.5;
     // console.log(`Current seconds: ${currSeconds}`);
   }
 };
@@ -158,13 +175,36 @@ const controlLayout = () => {
           scorePEl.style.color = 'white';
           highscorePEl.style.color = 'white';
           lifesPEl.style.color = 'white';
-        } else if (score > 100) {
+        } else if (score > 100 && score <= 150) {
           document.body.style.backgroundColor = `#${randomColor}`;
           randomColor = generateRandomColor();
           document.body.style.backgroundColor = `#${randomColor}`;
           item.style.backgroundColor = `transparent`;
           document.querySelector('.grid-item--active').style.boxShadow =
             '0 0 8px 8px black';
+        } else if (score > 150 && score <= 200) {
+          document.body.style.backgroundColor = `#${randomColor}`;
+          randomColor = generateRandomColor();
+          item.style.backgroundColor = `#${randomColor}`;
+          document.querySelector('.grid-item--active').style.boxShadow =
+            'inset 0 0 16px 16px white';
+          document
+            .querySelectorAll('.grid-item--not-active')
+            .forEach((item) => (item.style.boxShadow = 'none'));
+        } else if (score > 200) {
+          document.body.style.backgroundColor = `#${randomColor}`;
+          randomColor = generateRandomColor();
+          item.style.backgroundColor = `#${randomColor}`;
+          if (score > 215) {
+            document.querySelector('.grid-item--active').style.boxShadow =
+              'inset 0 0 2px 2px white';
+          } else {
+            document.querySelector('.grid-item--active').style.boxShadow =
+              'inset 0 0 4px 4px white';
+          }
+          document
+            .querySelectorAll('.grid-item--not-active')
+            .forEach((item) => (item.style.boxShadow = 'none'));
         }
       } else {
         item.style.backgroundColor = 'purple';
@@ -181,7 +221,7 @@ const difficultyControl = () => {
       }
       setTimeout(shiftItem, 1500);
     } else if (score > 5 && score <= 10) {
-      if (currSeconds > 3) {
+      if (currSeconds > 2) {
         handleLifeLoss();
       }
       controlLayout();
@@ -210,12 +250,24 @@ const difficultyControl = () => {
       }
       controlLayout();
       setTimeout(shiftItem, 600);
-    } else if (score > 100) {
+    } else if (score > 100 && score <= 150) {
       if (currSeconds > 1) {
         handleLifeLoss();
       }
       controlLayout();
-      setTimeout(shiftItem, 500);
+      setTimeout(shiftItem, 550);
+    } else if (score > 150 && score <= 200) {
+      if (currSeconds > 1) {
+        handleLifeLoss();
+      }
+      controlLayout();
+      setTimeout(shiftItem, 550);
+    } else if (score > 200) {
+      if (currSeconds >= 1) {
+        handleLifeLoss();
+      }
+      controlLayout();
+      setTimeout(shiftItem, 650);
     }
   }
 };
@@ -255,7 +307,9 @@ startGameBtn.addEventListener('click', () => {
   resetTimer();
   // If game is playing, apply game logic
   if (playing) {
-    gameMusic.play();
+    if (musicOn) {
+      gameMusic.play();
+    }
     startGameBtn.classList.add('hidden');
     gameInstructionEl.classList.add('hidden');
     shiftItem(score);
