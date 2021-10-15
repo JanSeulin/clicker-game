@@ -87,7 +87,6 @@ body {
 
 .fa-trophy {
   color: gold;
-  /* margin-right: 0.4rem; */
 }
 
 /* HELPER CLASSES */
@@ -106,21 +105,10 @@ body {
   cursor: pointer;
 }
 
-/* @-moz-document url-prefix() {
-  .game-instruction {
-    font-size: 1.8rem;
-  }
-
-  .score-text,
-  .lifes-left-text,
-  .highscore-text {
-    font-size: 1.8rem;
-  }
-} */
-
 .show-tablet {
   display: none;
 }
+
 /* MEDIA QUERIES */
 @media (max-width: 81em) {
 }

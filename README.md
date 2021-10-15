@@ -9,6 +9,7 @@ This is a simple game created for programming practice purposes (and fun) where 
 - Sound effects
 - Progressive Difficulty (Speed and layout)
 - You start with 5 lives, you lose them either by clicking in the wrong square or by not clicking anything for a specific amount of time (points dependent)
+- Responsive to most devices width and height (need more testing)
 
 ## To do
 

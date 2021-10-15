@@ -36,7 +36,6 @@ const init = () => {
   playing = false;
   score = 0;
   lifes = 5;
-  // timer = 0;
   currSeconds = 0;
   scoreEl.textContent = 0;
   scorePEl.style.color = 'white';
@@ -50,7 +49,7 @@ const init = () => {
   for (let i = 0; i <= gridItems.length - 1; i++) {
     gridItems[i].classList.remove('grid-item--active');
     gridItems[i].classList.add('grid-item--not-active');
-    // gridItems[i].attributeStyleMap.clear();
+    // gridItems[i].attributeStyleMap.clear(); ----- Don't work on firefox
     gridItems[i].removeAttribute('style');
   }
 
@@ -104,7 +103,6 @@ const handleClick = (e) => {
   if (playing) {
     if (e.target.classList.contains('grid-item--active')) {
       currSeconds = 0;
-      // console.log('active');
       pointAddedSong.play();
       score++;
       scoreEl.textContent = score;
@@ -246,8 +244,6 @@ const shiftItem = () => {
       gridItems[i].addEventListener('click', handleClick);
     }
 
-    // let notActive = document.querySelectorAll('.grid-item--not-active');
-
     lastPos = position;
     difficultyControl();
   }
@@ -265,5 +261,3 @@ startGameBtn.addEventListener('click', () => {
     shiftItem(score);
   }
 });
-
-// Shift square position over time
