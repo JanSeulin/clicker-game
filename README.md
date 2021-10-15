@@ -1,6 +1,7 @@
 # Clicker game!
 
 [Live Demo](https://janseulin.github.io/clicker-game/)
+
 This is a simple game created for programming practice purposes (and fun) where your objective is to click in the purple rectangle. You earn points by doing so and the game gets progressively harder the more points you have.
 
 # Features
