@@ -21,3 +21,7 @@ This is a simple game created for programming practice purposes (and fun) where 
 
 - Sometimes a second (and occasionally a third) purple rectangle pops up, but it's not a valid/clickable rectangle and therefore you'll lose a live if you click it. This happens specially after 50+ points where the speed increases significantly.
 - Sound effects don't play when the time between the same action is too low
+
+### Music
+
+Adam Sandler and the Chipmunks (Hollywood is Doomed) by [Gigakoops](https://gigakoops.bandcamp.com/) is licensed under a Attribution-NonCommercial-ShareAlike 4.0 International License.
