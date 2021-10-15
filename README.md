@@ -1,6 +1,6 @@
 # Purple Ballad - Reflex based browser mini-game!
 
-[Live Demo](https://janseulin.github.io/clicker-game/)
+[Live Demo](https://janseulin.github.io/purple-ballad--minigame/)
 
 **⚠️ Warning: the game contains bright, flashing colors and can potentially trigger seizures for people with photosensitive epilepsy**
 
