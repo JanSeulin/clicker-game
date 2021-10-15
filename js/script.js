@@ -19,9 +19,9 @@ const gameOver = new Audio('audio/game-over.wav');
 const gameMusic = new Audio('audio/Gigakoops-music.ogg');
 
 pointAddedSong.preload = 'auto';
-pointAddedSong.volume = 0.5;
+pointAddedSong.volume = 0.4;
 wrongClick.preload = 'auto';
-wrongClick.volume = 0.5;
+wrongClick.volume = 0.4;
 gameOver.preload = 'auto';
 
 // console.log(gridItems.length);

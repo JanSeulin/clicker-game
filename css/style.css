@@ -101,7 +101,7 @@ body {
 }
 
 .grid-item--active:hover {
-  box-shadow: 0 0 5px 5px white;
+  box-shadow: inset 0 0 5px 5px white;
   cursor: pointer;
 }
 

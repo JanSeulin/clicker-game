@@ -2,7 +2,9 @@
 
 [Live Demo](https://janseulin.github.io/clicker-game/)
 
-This is a simple game created for programming practice purposes (and fun) where your objective is to click in the purple rectangle. You earn points by doing so and the game gets progressively harder the more points you have.
+**⚠️ Warning: the game contains bright, flashing colors and can potentially trigger seizures for people with photosensitive epilepsy**
+
+This is a simple reflex based game created to practice programming (and for fun) using only vanilla javascript, html and css. Your objective is to click in the purple rectangle. You earn points by doing so and the game gets progressively harder the more points you have.
 
 # Features
 
