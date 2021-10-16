@@ -17,7 +17,7 @@ This is a simple reflex based game created to practice programming (and for fun)
 
 - ~~Add option to mute/turn on music~~
 - ~~Add high-score to local storage~~
-- Add more variety in the difficulty/layout progression between scores 50-100, 100-150 and 150-200.
+- ~~Add more variety in the difficulty/layout progression between scores 50-100, 100-150 and 150-200.~~
 - Add option to restart / stop during a game without losing all lives
 - Refactor/clean the code
 

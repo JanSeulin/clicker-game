@@ -161,6 +161,15 @@ const controlLayout = () => {
       );
       randomColor = generateRandomColor();
       document.body.style.backgroundColor = `#${randomColor}`;
+      if (score >= 70 && score < 85) {
+        Array.from(notActive, (e) => (e.style.backgroundColor = `transparent`));
+      } else if (score >= 85) {
+        Array.from(
+          notActive,
+          (e) => (e.style.backgroundColor = `#${randomColor}`)
+        );
+        Array.from(notActive, (e) => (e.style.opacity = `0.5`));
+      }
     }
 
     gridItems.forEach((item) => {
@@ -185,12 +194,21 @@ const controlLayout = () => {
           highscorePEl.style.color = 'white';
           lifesPEl.style.color = 'white';
         } else if (score > 100 && score <= 150) {
+          document.querySelector('.grid-item--active').style.opacity = `1`;
           document.body.style.backgroundColor = `#${randomColor}`;
           randomColor = generateRandomColor();
           document.body.style.backgroundColor = `#${randomColor}`;
           item.style.backgroundColor = `transparent`;
-          document.querySelector('.grid-item--active').style.boxShadow =
-            '0 0 8px 8px black';
+          if (score > 125) {
+            document.querySelector(
+              '.grid-item--active'
+            ).style.boxShadow = `inset 0 0 16px 16px white`;
+            item.style.boxShadow = `inset 0 0 8px 8px #${randomColor}`;
+          } else {
+            document.querySelector(
+              '.grid-item--active'
+            ).style.boxShadow = `0 0 8px 8px black, inset 0 0 8px 8px white`;
+          }
         } else if (score > 150 && score <= 200) {
           document.body.style.backgroundColor = `#${randomColor}`;
           randomColor = generateRandomColor();
