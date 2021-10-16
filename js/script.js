@@ -28,8 +28,16 @@ wrongClick.volume = 0.4;
 gameOver.preload = 'auto';
 
 // Initial game state
-let score, lifes, timer, lastPos, currSeconds;
-let highscore = 0;
+let score, lifes, timer, lastPos, currSeconds, highscore;
+
+console.log(localStorage);
+if (localStorage.length === 0) {
+  highscore = 0;
+} else {
+  highscore = Number(localStorage.getItem('highscore'));
+  highscoreEl.textContent = highscore;
+}
+
 let musicOn = true;
 let playing = false;
 
@@ -108,6 +116,7 @@ const handleLifeLoss = () => {
       gameMusic.currentTime = 0;
       if (score > highscore) {
         highscore = score;
+        localStorage.setItem('highscore', String(highscore));
         highscoreEl.textContent = highscore;
       }
       lifesEl.textContent = 0;
