@@ -35,7 +35,7 @@ let playing = false;
 
 const init = () => {
   playing = false;
-  score = 150;
+  score = 0;
   lifes = 5;
   currSeconds = 0;
   scoreEl.textContent = 0;
