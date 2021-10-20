@@ -219,7 +219,7 @@ body {
 /* max HEIGHT 600px */
 @media (max-height: 38em) {
   .highscore-text {
-    bottom: 1rem;
+    bottom: 0rem;
     right: 3rem;
     font-size: 1.6rem;
   }

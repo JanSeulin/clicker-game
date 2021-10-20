@@ -30,7 +30,6 @@ gameOver.preload = 'auto';
 // Initial game state
 let score, lifes, timer, lastPos, currSeconds, highscore;
 
-console.log(localStorage);
 if (localStorage.length === 0) {
   highscore = 0;
 } else {
@@ -50,8 +49,9 @@ const init = () => {
   scorePEl.style.color = 'white';
   lifesEl.textContent = 5;
   lifesPEl.style.color = 'white';
-  highscorePEl.style.color = 'white';
 
+  highscorePEl.classList.remove('hidden');
+  highscorePEl.style.color = 'white';
   gameInstructionEl.classList.remove('hidden');
   startGameBtn.classList.remove('hidden');
 
@@ -71,6 +71,18 @@ const init = () => {
 
 init();
 
+// Check player screen width and height to decide if hide highscore or not
+const width =
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
+const height =
+  window.innerHeight ||
+  document.documentElement.clientHeight ||
+  document.body.clientHeight;
+
+console.log(width, height);
+
 // Handle music on/off
 volumeEl.addEventListener('click', () => {
   muteVol.classList.toggle('hidden');
@@ -84,9 +96,9 @@ volumeEl.addEventListener('click', () => {
       gameMusic.play();
     }
   }
-  console.log(musicOn);
 });
 
+// Handle Time counter
 const resetTimer = () => {
   clearInterval(timer);
   currSeconds = 0;
@@ -102,6 +114,7 @@ const startIdletimer = () => {
   }
 };
 
+// Handle losing lives
 const handleLifeLoss = () => {
   if (playing) {
     if (lifes > 1) {
@@ -125,6 +138,7 @@ const handleLifeLoss = () => {
   }
 };
 
+// Handle when clicking right and wrong grid item
 const handleClick = (e) => {
   if (playing) {
     if (e.target.classList.contains('grid-item--active')) {
@@ -143,11 +157,14 @@ const generateRandomColor = () => {
   return Math.floor(Math.random() * 16777215).toString(16);
 };
 
+// Control layout difficulty according to score
 const controlLayout = () => {
   if (playing) {
     let randomColor = generateRandomColor();
-
     let notActive = document.querySelectorAll('.grid-item--not-active');
+    let gridItemActive = document.querySelector('.grid-item--active');
+
+    // Layout where all non active items change to the same color
     if (score > 30 && score <= 50) {
       Array.from(
         notActive,
@@ -172,49 +189,45 @@ const controlLayout = () => {
       }
     }
 
+    const setFixedColor = (color, color2, color3, color4, color5, item) => {
+      document.body.style.backgroundColor = color;
+      item.style.backgroundColor = color2;
+      scorePEl.style.color = color3;
+      highscorePEl.style.color = color4;
+      lifesPEl.style.color = color5;
+    };
+    // Layout where the color is fixed or each non active item receive a random color
     gridItems.forEach((item) => {
       if (item.classList.contains('grid-item--not-active')) {
         if (score > 5 && score <= 10) {
-          document.body.style.backgroundColor = 'white';
-          item.style.backgroundColor = 'black';
-          scorePEl.style.color = 'black';
-          highscorePEl.style.color = 'black';
-          lifesPEl.style.color = 'black';
+          setFixedColor('white', 'black', 'black', 'black', 'black', item);
         } else if (score > 10 && score <= 20) {
-          document.body.style.backgroundColor = '#3f080d';
-          item.style.backgroundColor = '#EC979F';
-          scorePEl.style.color = 'white';
-          highscorePEl.style.color = 'white';
-          lifesPEl.style.color = 'white';
+          setFixedColor('#3f080d', '#EC979F', 'white', 'white', 'white', item);
         } else if (score > 20 && score <= 30) {
-          document.body.style.backgroundColor = `#${randomColor}`;
-          randomColor = generateRandomColor();
-          item.style.backgroundColor = `black`;
-          scorePEl.style.color = 'white';
-          highscorePEl.style.color = 'white';
-          lifesPEl.style.color = 'white';
+          setFixedColor(
+            `#${randomColor}`,
+            'black',
+            'white',
+            'white',
+            'white',
+            item
+          );
         } else if (score > 100 && score <= 150) {
-          document.querySelector('.grid-item--active').style.opacity = `1`;
-          document.body.style.backgroundColor = `#${randomColor}`;
-          randomColor = generateRandomColor();
+          gridItemActive.style.opacity = `1`;
           document.body.style.backgroundColor = `#${randomColor}`;
           item.style.backgroundColor = `transparent`;
+          gridItemActive.style.boxShadow = `0 0 8px 8px black, inset 0 0 8px 8px white`;
           if (score > 125) {
-            document.querySelector(
-              '.grid-item--active'
-            ).style.boxShadow = `inset 0 0 16px 16px white`;
+            document.body.style.backgroundColor = `#${randomColor}`;
+            gridItemActive.style.boxShadow = `inset 0 0 16px 16px white`;
+            item.style.backgroundColor = `rgba(128,0,128, 0.6)`;
             item.style.boxShadow = `inset 0 0 8px 8px #${randomColor}`;
-          } else {
-            document.querySelector(
-              '.grid-item--active'
-            ).style.boxShadow = `0 0 8px 8px black, inset 0 0 8px 8px white`;
           }
         } else if (score > 150 && score <= 200) {
           document.body.style.backgroundColor = `#${randomColor}`;
           randomColor = generateRandomColor();
           item.style.backgroundColor = `#${randomColor}`;
-          document.querySelector('.grid-item--active').style.boxShadow =
-            'inset 0 0 16px 16px white';
+          gridItemActive.style.boxShadow = 'inset 0 0 16px 16px white';
           document
             .querySelectorAll('.grid-item--not-active')
             .forEach((item) => (item.style.boxShadow = 'none'));
@@ -223,11 +236,9 @@ const controlLayout = () => {
           randomColor = generateRandomColor();
           item.style.backgroundColor = `#${randomColor}`;
           if (score > 215) {
-            document.querySelector('.grid-item--active').style.boxShadow =
-              'inset 0 0 2px 2px white';
+            gridItemActive.style.boxShadow = 'inset 0 0 2px 2px white';
           } else {
-            document.querySelector('.grid-item--active').style.boxShadow =
-              'inset 0 0 4px 4px white';
+            gridItemActive.style.boxShadow = 'inset 0 0 4px 4px white';
           }
           document
             .querySelectorAll('.grid-item--not-active')
@@ -307,6 +318,8 @@ const shiftItem = () => {
       position = Math.trunc(Math.random() * 9 + 1);
     }
 
+    lastPos = position;
+
     for (let i = 0; i <= gridItems.length - 1; i++) {
       gridItems[i].classList.remove('grid-item--active');
       gridItems[i].classList.add('grid-item--not-active');
@@ -323,7 +336,6 @@ const shiftItem = () => {
       gridItems[i].addEventListener('click', handleClick);
     }
 
-    lastPos = position;
     difficultyControl();
   }
 };
@@ -332,10 +344,13 @@ const shiftItem = () => {
 startGameBtn.addEventListener('click', () => {
   playing = true;
   resetTimer();
-  // If game is playing, apply game logic
+
   if (playing) {
     if (musicOn) {
       gameMusic.play();
+    }
+    if (width < 500 || height < 500) {
+      highscorePEl.classList.add('hidden');
     }
     startGameBtn.classList.add('hidden');
     gameInstructionEl.classList.add('hidden');
